@@ -1,11 +1,13 @@
 #THIS SCRIPT CLEANS DATA UP
 library(tidyverse)
 library(lubridate)
+library(readr)
+
+
 
 #IMPORTS RAW TXT FILE AND DELETES JUNK ROWS 
-rain_raw <- read_csv(
-  "C:\\Users\\Alex's computer\\Desktop\\Portland Rain\\01_Input\\gresham_rain.txt",
-                     skip = 8)
+rain_raw <- read_csv("01_Input/gresham_rain.txt",
+                         skip=8)
 rain_raw<-rain_raw[-c(1:2),] 
 
 #COMPILES DAY AND TIPS FROM RAW DATA 
