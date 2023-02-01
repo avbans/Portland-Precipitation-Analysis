@@ -1,16 +1,24 @@
+#AGGREGATE THE DATA 
 library(tidyverse)
 library(lubridate)
 library(zoo)
 
+#AGGREGATE RAIN TOTALS BY WATER YEAR 
+rain_yearly<-rain_full%>%
+  group_by(wateryear)%>%
+  summarize(total_in=sum(total_in))
 
-#AGGREGATE THE DATA 
-#AGGREGATE DAILY RAIN TOTALS FOR CURRENT WATER YEAR FOR LAST MONTH
+
+#FILTER STORMS FOR THIS WATER YEAR 
 today<-today(tzone="US/Pacific")
-lastmonth<- (today %m-% months(1))
 
-rain_daily<-rain_full%>%
-  filter(wateryear==water_year(today,10))%>%
-  filter(datetime >lastmonth)
+rain_wateryear<-rain_full%>%
+  filter(wateryear==water_year(today,10))
+
+rain_wateryear<-crossing(rain_wateryear,rain_storm)%>% 
+  filter(datetime >= eventstart,
+         datetime < eventend)%>%
+  select(wateryear,storm,datetime,total_in)
 
 #AGGREGATE MONTHLY RAIN TOTALS FOR CURRENT WATER YEAR
 rain_monthly<-rain_full%>%
@@ -26,18 +34,19 @@ rain_month_avg<-rain_full%>%
   group_by(month=month(month,label=TRUE))%>%
   summarize(avg_in=mean(sum_in))
 
+#COMBINE MONTHLY AVERAGE WTIH RAIN TOTALS 
 rain_monthly<-merge(rain_monthly,
                     rain_month_avg,
                     by.x = "month")
+#CLEAN UP DATA FRAME
+rain_month_avg<-NULL
 
 rain_monthly<-rain_monthly%>%
   select(monthyear,total_in,avg_in)%>%
-  gather(key=statistic,value=precipitation,2:3)
+  gather(key=statistic,value=precipitation,2:3)%>%
+  arrange(statistic,monthyear)
 
-#AGGREGATE RAIN TOTALS BY WATER YEAR 
-rain_yearly<-rain_full%>%
-  group_by(wateryear)%>%
-  summarize(total_in=sum(total_in))
+
 
 
 
