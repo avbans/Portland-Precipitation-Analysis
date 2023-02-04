@@ -9,12 +9,8 @@ water_year<-function(date,Y){
   x<-paste0((as.numeric(str_sub(x,1))-1),"-",str_sub(x, 1))
 }
 
-#DOWNLOAD THE DATA DIRECTLY FROM THE INTERNET AND SAVE IT AS A .TXT FILE
-write.table(read_table(url('https://or.water.usgs.gov/non-usgs/bes/gresham.rain'),
-                       "01_Input/gresham_rain.txt"))
 
-#INITIAL CLEANING OF DATA 
-rain_raw<-read_table("01_Input/gresham_rain.txt",skip=9)%>%
+rain_raw<-read_table(url('https://or.water.usgs.gov/non-usgs/bes/gresham.rain'),skip=9)%>%
   filter(!row_number()%in% c(1))%>% 
   select(-c("Total"))
 
