@@ -1,6 +1,4 @@
 #GRAPHS
-library(tidyverse)
-
 
 #GRAPH OF MONTHLY TOTALS COMPARED TO AVERAGE MONTHS WITH CUMULATIVE TOTALS
 #AGGREGATE AVERAGE MONTHLY RAIN TOTALS 
@@ -15,7 +13,6 @@ rain_monthly<-merge(rain_monthly,
                     rain_month_avg,
                     by.x = "month")
 #CLEAN UP DATA FRAME AND TIDY 
-remove(rain_month_avg)
 
 rain_monthly<-rain_monthly%>%
   select(monthyear,total,avg)%>%
@@ -28,14 +25,14 @@ df<-rain_monthly%>%
   filter(statistic =="total")%>%
   mutate(cum=cumsum(depth_in))
 
-scalefactor<-max(df$depth_in)/max(df$cum)
+.scalefactor<-max(df$depth_in)/max(df$cum)
 
 
 monthly_graph<-ggplot(rain_monthly,aes(monthyear,depth_in,fill=statistic))+
   geom_col(position= position_dodge2(reverse= TRUE))+
-  geom_line(df,mapping=aes(x=monthyear, y=cum*scalefactor))+
+  geom_line(df,mapping=aes(x=monthyear, y=cum*.scalefactor))+
   scale_y_continuous(name="Precipitation (in)",
-                     sec.axis = sec_axis(~./scalefactor, name="Cumulative Rainfall (in)"))+
+                     sec.axis = sec_axis(~./.scalefactor, name="Cumulative Rainfall (in)"))+
   labs(title="Total Monthly Precipitation for Current Water Year Compared to Average",
        x="Month",
        y="Precipitation (in)")+
@@ -52,6 +49,13 @@ yearly_graph<-ggplot(rain_yearly,aes(reorder(wateryear,desc(wateryear)),depth_in
   theme_bw()+
   theme(axis.text.x=element_text(angle = 90, hjust =1))
 
-#FINAL GRAPHS
-monthly_graph
-yearly_graph
+#CREATE A LIST OF GRAPHS AND REMOVE NO LONGER RELEVENT OBJECTS
+graphs<-list("monthly"=monthly_graph, 
+             "yearly"= yearly_graph)
+
+
+rm(list=c("rain_month_avg",
+          "df",
+         "monthly_graph",
+         "yearly_graph"))
+

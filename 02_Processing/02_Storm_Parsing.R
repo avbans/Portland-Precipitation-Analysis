@@ -28,6 +28,7 @@ rain_storm_summary<-rain_storm_summary%>%
     eventend = last(datetime),
     total_depth_in = sum(depth_in))%>%
     mutate(duration_hr = as.numeric(difftime(eventend,eventstart, units='h')))%>%
+  mutate(wateryear=water_year(eventend,10))%>%
   filter(total_depth_in>0.02)%>%
   mutate(storm_id =row_number())
 
