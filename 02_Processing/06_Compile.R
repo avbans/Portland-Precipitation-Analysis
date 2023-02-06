@@ -1,5 +1,7 @@
-project_dir <- here::here()
-codefile <- paste(project_dir, '02_Processing', '05_Report.R', sep = "/")
-outfile <- paste(project_dir, "03_Output", "Precipitation Report.html", sep = "/")
+file_directory<-list("project_dir" = here::here(), 
+                    "codefile" =  paste(here::here(),'02_Processing', '05_Report.R', sep = "/"),
+                    "outfile" = paste(here::here(), "03_Output", "Precipitation Report.html", sep = "/"))
+                    
 
-rmarkdown::render(input = codefile,output_file=outfile)
+rmarkdown::render(input = file_directory$codefile,
+                  output_file = file_directory$outfile)

@@ -1,6 +1,9 @@
 #LOAD LIBRARIES
+
 #FOR DATA MANIPULATION AND GRAPHING 
 library(tidyverse)
+library(plotly)
+library(gghighlight)
 
 #FOR WORKING WITH DATES AND TIMS
 library(lubridate)

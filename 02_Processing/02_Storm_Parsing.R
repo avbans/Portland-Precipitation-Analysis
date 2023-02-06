@@ -1,6 +1,6 @@
 #THIS SCRIPT PARSES STORM EVENTS FROM TIDY PRECIPTATION DATA
 
-rain_storm_summary<-rain_full%>%
+rain_storm_full<-rain_full%>%
   arrange(datetime)%>%
   mutate(log =row_number())%>%
   mutate(rainflag = ifelse(depth_in>0,"rain","no rain"))%>%
@@ -21,7 +21,7 @@ rain_storm_summary<-rain_full%>%
   
 
 
-rain_storm_summary<-rain_storm_summary%>%
+rain_storm_full<-rain_storm_full%>%
   group_by(storm_id)%>%
   summarize(
     eventstart = first(datetime),

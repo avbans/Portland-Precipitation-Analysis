@@ -1,25 +1,12 @@
-#FOR THIS WATER YEAR 
-dates$current_water_year
+#CALCULATE SUMMARY STATISTICS
 
-b= rain_storm_summary%>%
+#DEPTH AND DURATION FOR CURRENT WATER YEAR 
+rain_storm_wateryear<- rain_storm_full%>%
   filter(wateryear == dates$current_water_year)%>%
   select(total_depth_in, duration_hr)
 
-#THERE WERE X MANY STORMS
-length(b$total_depth_in)
-
-#DEPTH RANGED from x to y inches.   
-min(b$total_depth_in)
-
-max(b$total_depth_in)
-
-#Duration RANGED from x to y HOURS   
-min(b$duration_hr)
-
-max(b$duration_hr)
-
-#COMPARE TO AVERAGE 
-c=  rain_storm_summary%>%
+#DEPTH AND DURATION FOR AVERAGE WATER YEAR 
+rain_storm_avg <-rain_storm_full%>%
   group_by(wateryear)%>%
   summarize(
     storm_num= n(),
@@ -29,18 +16,7 @@ c=  rain_storm_summary%>%
     mean_duration_hr = mean(duration_hr),
     min_duration_hr = min(duration_hr),
     max_duration_hr = max(duration_hr))
-#AVERAGE NUMBER OF STORMS PER WATER YEAR 
-round(mean(c$storm_num),0)
 
-#DEPTH RANGED from x to y inches.   
-mean(c$min_depth_in)
-
-mean(c$max_depth_in)
-
-#Duration RANGED from x to y HOURS   
-min(c$min_duration_hr)
-
-max(c$max_duration_hr)
 
 #HOW MUCH IT'S RAINED THIS WATER YEAR 
 current_wateryear_rain_total<-round(
@@ -48,7 +24,7 @@ current_wateryear_rain_total<-round(
     select(depth_in)
   ,1)
 
-#AVERAGE ANNUAL RAINFALL 
+#AVERAGE RAINFALL PER YEAR   
 average_wateryear_rain_total<-round(
   mean(rain_yearly$depth_in,0)
 )
