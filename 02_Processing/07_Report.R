@@ -91,7 +91,7 @@ graphs$yearly
 #' 
 #' 
 #' THIS PROJECT IS CURRENTLY A WORK IN PRORGRESS. Project can be accessed from:
-#' https://github.com/avbans/portland_rain-.git. 
+#' https://github.com/avbans/Portland-Precipitation-Analysis.git. 
 #' 
 #' 
 
