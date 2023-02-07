@@ -1,11 +1,15 @@
 #THIS SCRIPT DOWNLOADS HYDRA RAIN DATA AND PROCESSES IT FOR ANALYSIS
 
-rain_raw<-read_table(url('https://or.water.usgs.gov/non-usgs/bes/gresham.rain'),skip=9)%>%
+#READ DATA DIRECTLY FROM WEB AND INTIAL CLEAN UP 
+rain_raw<-read_table(url('https://or.water.usgs.gov/non-usgs/bes/gresham.rain'),
+                     skip=9)%>%
   filter(!row_number()%in% c(1))%>% 
   select(-c("Total"))
 
-#IMPORT DATA AND CLEAN 
+#SAVE DATA FOR IF OFFLINE
+write.table(rain_raw,"01_Input/gresham_rain.txt")
 
+#TIDY DATA, REMOVE NA'S, AND ADJUST UNITS
 rain_full<-rain_raw%>%
   gather(time,value=tips,2:25)%>%
   na.omit()%>%
@@ -28,6 +32,7 @@ rain_full<-rain_full%>%
   mutate(wateryear = water_year(datetime,10))%>%
   filter(wateryear>'1997-1998')%>%
   select(wateryear,datetime,depth_in)
+
 
 
 
