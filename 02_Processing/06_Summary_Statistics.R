@@ -1,5 +1,11 @@
 #CALCULATE SUMMARY STATISTICS
 
+#PARSE STORMS FROM RAIN DATA 
+rain_storm_full <- parse_storms(df=rain_full,
+                                intervals_per_hr = 1,
+                                interevent_period_hr = 12,
+                                storm_size_minimum = 0.02)
+
 #DEPTH AND DURATION FOR CURRENT WATER YEAR 
 rain_storm_wateryear<- rain_storm_full%>%
   filter(wateryear == dates$current_water_year)%>%

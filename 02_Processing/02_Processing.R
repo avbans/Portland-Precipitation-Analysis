@@ -29,7 +29,7 @@ rain_full<-rain_full%>%
 #FORMAT DATESTIMES, ADD WATER YEAR, AND FILTER INCOMPLETE YEAR
 rain_full<-rain_full%>%
   mutate(datetime= dmy_hm(paste(date,time)))%>%
-  mutate(wateryear = water_year(datetime,10))%>%
+  mutate(wateryear = get_wateryear(datetime))%>%
   filter(wateryear>'1997-1998')%>%
   select(wateryear,datetime,depth_in)
 

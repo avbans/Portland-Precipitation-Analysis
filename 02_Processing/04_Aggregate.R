@@ -7,7 +7,7 @@ rain_yearly<-rain_full%>%
 
 #DETERMINE CURRENT WATER YEAR
 dates<-list("today"= lubridate::today(tzone="US/Pacific"),
-            "current_water_year" = water_year(lubridate::today(tzone="US/Pacific"),10))
+            "current_water_year" = get_wateryear(lubridate::today(tzone="US/Pacific"),10))
 
 #FILTER RAIN FOR THE CURRENT WATER YEAR 
 rain_wateryear<-rain_full%>%

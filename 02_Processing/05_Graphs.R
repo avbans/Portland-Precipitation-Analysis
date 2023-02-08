@@ -94,4 +94,5 @@ rm(list=c("rain_month_avg",
          "monthly_graph",
          "yearly_graph"))
 
-graphs$monthly
+
+

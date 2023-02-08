@@ -6,9 +6,6 @@ source("02_Processing/01_Libraries.R")
 #IMPORT DATA FROM WEB AND PROCESS 
 source("02_Processing/02_Processing.R")
 
-#PARSE STORMS FROM FULL PRECIP DATA 
-source("02_Processing/03_Storm_Parsing.R")
-
 #AGGERATE DAILY, MONTHLY, AND YEARLY SUMMARIES FROM FULL PRECIP DATA 
 source("02_Processing/04_Aggregate.R")
 
