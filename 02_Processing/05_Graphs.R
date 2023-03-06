@@ -7,7 +7,8 @@ hourly_graph<-ggplot(rain_wateryear,aes(datetime,depth_in))+
                    x="Datetime",
                    y="Precipitation (in)")+
   theme_classic()+
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(text = element_text(family = "Helvetica"),
+        plot.title = element_text(hjust = 0.5))
   
 
 hourly_graph<-ggplotly(hourly_graph, 
@@ -59,10 +60,10 @@ monthly_graph<- ggplot(rain_monthly,aes(monthyear,depth_in,fill=statistic))+
                     name = "Key",
                     labels = c("Average", "Current Total"),
                     guide = guide_legend(reverse = TRUE))+
-  theme(legend.position = "bottom")+
-  theme(plot.title = element_text(hjust = 0.5))+
-  theme(axis.ticks.y.right = element_line(color = "#FFCC33",
-                                          linewidth =5))
+  theme(text = element_text(family = "Helvetica"),
+        legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        axis.ticks.y.right = element_line(color = "#FFCC33",linewidth =5))
 
 #YEARLY TOTALS WITH MEAN LINE 
 yearly_graph<-ggplot(rain_yearly,aes(x=reorder(wateryear,desc(wateryear)), 
@@ -77,9 +78,9 @@ yearly_graph<-ggplot(rain_yearly,aes(x=reorder(wateryear,desc(wateryear)),
        x="Year", 
        y="Precipitation (in)")+
   theme_classic()+
-  theme(plot.title = element_text(hjust = 0.5))+
-  theme(axis.text.x=element_text(angle = 90, 
-                                 hjust =1))
+  theme(text = element_text(family = "Helvetica"),
+        plot.title = element_text(hjust = 0.5),
+        axis.text.x=element_text(angle = 90, hjust =1))
 
 
 #CREATE A LIST OF GRAPHS AND REMOVE NO LONGER RELEVENT OBJECTS
@@ -94,5 +95,5 @@ rm(list=c("rain_month_avg",
          "monthly_graph",
          "yearly_graph"))
 
-
+graphs$yearly
 

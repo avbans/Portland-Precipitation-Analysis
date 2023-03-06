@@ -9,26 +9,6 @@
     ]
   },
   "Packages": {
-    "Bans.Packages": {
-      "Package": "Bans.Packages",
-      "Version": "0.0.0.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "BansPackages",
-      "RemoteUsername": "avbans",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "7486d7ef86711f7cc035139bd71bc42ab0cd4c5d",
-      "Hash": "713ab694847ce170eba5ba37369d1ff2",
-      "Requirements": [
-        "dplyr",
-        "here",
-        "lubridate",
-        "markdown",
-        "stringr",
-        "tidyr"
-      ]
-    },
     "DBI": {
       "Package": "DBI",
       "Version": "1.1.3",
@@ -104,6 +84,26 @@
       "Repository": "CRAN",
       "Hash": "c39fbec8a30d23e721980b8afb31984c",
       "Requirements": []
+    },
+    "bansr": {
+      "Package": "bansr",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "bansr",
+      "RemoteUsername": "avbans",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "ec9e072bbd64c175202d4116cce7468dfc7155f7",
+      "Hash": "8f55fb20aafc9c5be2b2ac2735a4dded",
+      "Requirements": [
+        "dplyr",
+        "here",
+        "lubridate",
+        "markdown",
+        "stringr",
+        "tidyr"
+      ]
     },
     "base64enc": {
       "Package": "base64enc",

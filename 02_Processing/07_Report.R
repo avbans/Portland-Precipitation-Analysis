@@ -3,9 +3,8 @@
 #' author: "By: Alex Bans"
 #' date: "`r format(dates$today,'%B %d, %Y')`"
 #' output:
-#'    html_document:
-#'      theme: united
-#'      highlight: haddock
+#'  html_document:
+#' font-family: Times New Roman
 #' ---
 
 #' ## Introduction 
@@ -94,22 +93,6 @@ graphs$yearly
 #' https://github.com/avbans/Portland-Precipitation-Analysis.git. 
 #' 
 #' 
-
-#' ## Future Ideas
-#' There are several ideas that may or may not be incorporated in this report.
-#' Firstly, I want to automate the compiling and distribution of this report at 
-#' the end of the water year, every September 30th.
-#' Another thing I would be interested in doing is calculating 
-#' more sophisticated statistics in regards to the storm events that have occurred 
-#' in the water year, such as return intervals (ex. 1 in 100 year storms).
-#'  Utilizing the other rain gauges in the network could be used for spatial 
-#'  analysis. 
-#'  Finally, a useful potential update would be to incorporate 
-#'  other interesting environmental metrics such as snow events, 
-#'  temperature, air quality, and combined sewer overflow (CSO) events. 
-#'  The separation of storm events can also be useful for storm water runoff 
-#'  modeling. 
-
 
 
 

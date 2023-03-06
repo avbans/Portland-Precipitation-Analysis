@@ -14,6 +14,5 @@ library(here)
 library(markdown)
 
 #LOAD MY PERSONAL FUNCTIONS 
-library(Bans.Packages)
-
+library(bansr)
 
